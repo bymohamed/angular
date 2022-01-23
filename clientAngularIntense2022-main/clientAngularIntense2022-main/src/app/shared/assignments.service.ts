@@ -76,7 +76,9 @@ export class AssignmentsService {
       a.id = assignment.id;
       a.auteur = assignment.auteur;
       a.matiere = assignment.matiere;
-      a.note = assignment.note;
+      // Le devoir n'est pas rendu, on ne met pas la note
+      if (assignment.rendu == false) a.note = -1;
+      else a.note = assignment.note;
       a.rq = assignment.rq;
 
       this.addAssignment(a)

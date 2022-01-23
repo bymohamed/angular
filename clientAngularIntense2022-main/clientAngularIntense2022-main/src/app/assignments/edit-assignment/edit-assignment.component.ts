@@ -13,6 +13,12 @@ export class EditAssignmentComponent implements OnInit {
   // champs du formulaire
   nomAssignment?:string;
   dateDeRendu?:Date;
+  matiere?:string;
+  auteur?:string;
+  note?:number;
+  rq?:string;
+
+
 
   constructor(private route:ActivatedRoute,
               private router:Router,
@@ -41,6 +47,11 @@ export class EditAssignmentComponent implements OnInit {
       // pré-remplit le formulaire dès l'affichage
       this.nomAssignment = assignment?.nom;
       this.dateDeRendu = assignment?.dateDeRendu;
+      this.matiere = assignment?.matiere;
+      this.auteur = assignment?.auteur;
+      this.note = assignment?.note;
+      this.rq = assignment?.rq;
+
     })
   }
 
@@ -54,6 +65,23 @@ export class EditAssignmentComponent implements OnInit {
     if (this.dateDeRendu) {
       this.assignment.dateDeRendu = this.dateDeRendu;
     }
+
+    if (this.matiere) {
+      this.assignment.matiere = this.matiere;
+    }
+
+    if (this.auteur) {
+      this.assignment.auteur = this.auteur;
+    }
+
+    if (this.note) {
+      this.assignment.note = this.note;
+    }
+
+    if (this.rq) {
+      this.assignment.rq = this.rq;
+    }
+
     this.assignmentService
       .updateAssignment(this.assignment)
       .subscribe((reponse) => {

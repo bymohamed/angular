@@ -39,6 +39,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
   onAssignmentRendu() {
     this.assignmentTransmis!.rendu = true;
+    this.assignmentTransmis!.note = Math.floor(Math.random()*(20));
 
     if(this.assignmentTransmis) {
       this.assignmentService.updateAssignment(this.assignmentTransmis)

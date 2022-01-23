@@ -34,7 +34,7 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.rendu = false;
     newAssignment.auteur = this.auteur;
     newAssignment.matiere = this.matiere;
-    newAssignment.note = 0;
+    newAssignment.note = -1;
     newAssignment.rq = this.rq;
 
     this.assignmentService.addAssignment(newAssignment)

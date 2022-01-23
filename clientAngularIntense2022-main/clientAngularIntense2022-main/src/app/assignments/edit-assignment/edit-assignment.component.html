@@ -13,6 +13,22 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Edition de l'intitulé du cours"
+      [(ngModel)]="matiere" name="assignment-sub">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Edition du nom de l'auteur"
+      [(ngModel)]="auteur" name="assignment-author">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Edition de la note sur 20"
+      [(ngModel)]="note" name="assignment-grade">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Edition des remarques"
+      [(ngModel)]="rq" name="assignment-rq">
+    </mat-form-field>
     <button mat-raised-button color="primary"
            (click)="onSaveAssignment()">
       Sauver
