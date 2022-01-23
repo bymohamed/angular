@@ -13,6 +13,18 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
+  <mat-form-field>
+    <input matInput [(ngModel)]="auteur" name="auteur" placeholder="Nom de l'auteur">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="matiere" name="matiere" placeholder="Nom de la matiére">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="rq" name="rq" placeholder="Remarques sur le devoir">
+  </mat-form-field>
+
   <button mat-stroked-button color="primary">
     Ajouter un devoir
   </button>

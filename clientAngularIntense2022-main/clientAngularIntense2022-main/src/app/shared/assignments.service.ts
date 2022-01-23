@@ -15,8 +15,8 @@ export class AssignmentsService {
   constructor(private loggingService:LoggingService,
               private http:HttpClient) { }
 
-  //url = "http://localhost:8010/api/assignments";
-  url = "https://api-intense2022.herokuapp.com/api/assignments";
+  url = "http://localhost:8010/api/assignments";
+  //url = "https://api-intense2022.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
     // return of(this.assignments);
@@ -74,6 +74,10 @@ export class AssignmentsService {
       a.dateDeRendu = new Date(assignment.dateDeRendu);
       a.rendu = assignment.rendu;
       a.id = assignment.id;
+      a.auteur = assignment.auteur;
+      a.matiere = assignment.matiere;
+      a.note = assignment.note;
+      a.rq = assignment.rq;
 
       this.addAssignment(a)
       .subscribe(reponse => {
@@ -93,6 +97,11 @@ export class AssignmentsService {
       nouvelAssignment.nom = a.nom;
       nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
       nouvelAssignment.rendu = a.rendu;
+      nouvelAssignment.auteur = a.auteur;
+      nouvelAssignment.matiere = a.matiere;
+      nouvelAssignment.note = a.note;
+      nouvelAssignment.rq = a.rq;
+     
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
     });
