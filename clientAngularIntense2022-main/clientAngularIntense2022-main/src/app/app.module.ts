@@ -23,29 +23,41 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { Routes, RouterModule } from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
+import { LoginComponent } from './login/login.component';
+
+var JWT="";
 
 const routes:Routes = [
   {
     path:"",
-    component: AssignmentsComponent
+    component: AssignmentsComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"home",
-    component: AssignmentsComponent
+    component: AssignmentsComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"add",
-    component: AddAssignmentComponent
+    component: AddAssignmentComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"assignment/:id",
-    component: AssignmentDetailComponent
+    component: AssignmentDetailComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"assignment/:id/edit",
     component: EditAssignmentComponent,
     canActivate : [AuthGuard]
+  },
+  {
+    path:"login",
+    component: LoginComponent,
   }
+
 ];
 @NgModule({
   declarations: [
@@ -54,7 +66,8 @@ const routes:Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -68,4 +81,6 @@ const routes:Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+

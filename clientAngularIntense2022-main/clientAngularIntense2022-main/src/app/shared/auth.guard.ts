@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
         // vers une page d'erreur ou vers la page d'accueil
         console.log("NON Authentifié, navigation non autorisée");
 
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/login"]);
 
         return false;
       }
