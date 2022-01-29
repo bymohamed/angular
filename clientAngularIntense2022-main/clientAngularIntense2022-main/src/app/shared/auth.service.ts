@@ -6,14 +6,16 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   loggedIn = false;
 
-  logIn() {
+  logIn(username: String, password: String) {
     // typiquement, on devrait prendre en paramètres
     // login et password, vérifier qu'ils sont valides
     // en utilisant un web service en ligne (soit via une BD)
     // soit via oAuth, etc.
 
     // Nous pour le moment, on simule...
-    this.loggedIn = true;
+    if ((username == "test") && (password == "test")) {
+      this.loggedIn = true;
+    }
   }
 
   logOut() {
@@ -29,6 +31,5 @@ export class AuthService {
     // renvoie une promesse !
     return isUserAdmin;
   }
-
   constructor() { }
 }
