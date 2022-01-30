@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 import {MatTableDataSource} from '@angular/material/table';
+import { AuthService } from '../shared/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class AssignmentsComponent implements OnInit {
   val : string = "";
   
 
-  constructor(private assignmentService: AssignmentsService) {}
+  constructor(private _authServe: AuthService, private assignmentService: AssignmentsService, private router:Router) {}
 
   ngOnInit(): void {
     this.getAllAssignments();
@@ -54,7 +56,6 @@ export class AssignmentsComponent implements OnInit {
   }
 
   search(event: any){
-    console.log("zebii");
     this.assignmentService.searchAssignments(this.page, this.limit, event.target.value).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
       this.assignments = data.docs;
@@ -103,5 +104,11 @@ export class AssignmentsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.val = this.dataSource.filter;
     this.getAssignments();
+  }
+
+  logout(){
+    this._authServe.logOut();
+    console.log("connexion from login component")
+    this.router.navigate(["/login"]);
   }
 }

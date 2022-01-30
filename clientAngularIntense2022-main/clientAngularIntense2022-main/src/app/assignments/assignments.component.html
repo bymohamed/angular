@@ -6,6 +6,11 @@
       </button>
     </a>
   </div>
+
+  <button mat-flat-button color="warn" class="logout" (click)="logout()">
+    logout
+  </button>
+
   <input type="text" (keypress)="search($event)" placeholder="search"/>
 
   <h2>Liste des assignments :</h2>
