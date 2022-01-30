@@ -27,3 +27,12 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

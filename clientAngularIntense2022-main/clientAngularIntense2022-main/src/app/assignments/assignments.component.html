@@ -14,39 +14,45 @@
   <button mat-stroked-button color="primary"
           (click)="premierePage()"
           [disabled]="page===1"
-  >Première page</button>
+  >| <</button>
   &nbsp;
   <button mat-stroked-button color="primary"
           (click)="pagePrecedente()"
           [disabled]="!hasPrevPage"
-  >Page précédente</button>
+  ><</button>
   &nbsp;
   <button mat-stroked-button color="primary"
           (click)="pageSuivante()"
           [disabled]="!hasNextPage"
-          >Page suivante</button>
+          >></button>
   &nbsp;
   <button mat-stroked-button color="primary"
           (click)="dernierePage()"
           [disabled]="page===totalPages"
-  >Dernière page</button>
+  >> |</button>
 </div>
-  <mat-list *ngFor="let assignment of assignments">
-    <nav>
-      <a routerLink="/assignment/{{assignment.id}}">
-        <h3 mat-subheader>Date de rendu : {{assignment.dateDeRendu | date}}</h3>
-        <mat-list-item>
+
+<mat-form-field appearance="standard">
+  <mat-label>Recherche</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Trouver un assignment" #input>
+</mat-form-field>
+
+
+  <table mat-table class="mat-elevation-z8">   
+      <tr mat-header-row >
+        <th mat-header-cell> Nom </th>
+        <th mat-header-cell mat-sort-header> Date du rendu </th>
+      </tr>
+      <tr mat-row *ngFor="let assignment of assignments">
+        <td mat-cell><a routerLink="/assignment/{{assignment.id}}"> {{assignment.nom}} </a></td>
+        <td mat-cell>
           <p *ngIf="assignment.rendu; else nonsoumis" appRendu>
-            {{assignment.nom}} a été rendu par l'élève.
+            {{assignment.dateDeRendu | date}}
           </p>
-
           <ng-template #nonsoumis>
-            <p>{{assignment.nom}} non rendu.</p>
+            <p>Non rendu</p>
           </ng-template>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </a>
-    </nav>
-  </mat-list>
-
+          <mat-divider></mat-divider> </td>
+        </tr>
+  </table>
 </main>

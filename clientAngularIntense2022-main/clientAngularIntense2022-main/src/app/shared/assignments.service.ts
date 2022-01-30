@@ -24,8 +24,9 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.url);
   }
 
-  getAssignmentsPagine(page:number, limit:number):Observable<any> {
-    return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}`);
+  getAssignmentsPagine(page:number, limit:number, val:string):Observable<any> {
+    console.log(`${this.url}?page=${page}&limit=${limit}&val=${val}`);
+    return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}&val=${val}`);
   }
 
   getAssignment(id:number):Observable<Assignment|undefined> {
