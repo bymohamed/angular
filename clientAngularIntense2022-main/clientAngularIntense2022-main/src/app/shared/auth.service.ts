@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   loggedIn = false;
-
+  url = "http://localhost:8010/api/login";
   logIn(username: String, password: String) {
     // typiquement, on devrait prendre en paramètres
     // login et password, vérifier qu'ils sont valides
@@ -13,9 +14,17 @@ export class AuthService {
     // soit via oAuth, etc.
 
     // Nous pour le moment, on simule...
-    if ((username == "test") && (password == "test")) {
-      this.loggedIn = true;
-    }
+    this.http.post<any>(this.url, {username: username, password: password}).subscribe({
+        next: data => {
+            console.log("connected");
+            this.loggedIn = true;
+        },
+        error: error => {
+            console.log("not connected wrong man");
+        }
+    })
+    
+
   }
 
   logOut() {
@@ -31,5 +40,5 @@ export class AuthService {
     // renvoie une promesse !
     return isUserAdmin;
   }
-  constructor() { }
+  constructor(private http:HttpClient) { }
 }
