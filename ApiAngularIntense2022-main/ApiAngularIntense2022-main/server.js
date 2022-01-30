@@ -13,7 +13,7 @@ const uri = 'mongodb+srv://angular:Miage2022@cluster0.eyx8b.mongodb.net/myFirstD
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify:false
+  useFindAndModify: false
 };
 
 mongoose.connect(uri, options)
@@ -21,7 +21,7 @@ mongoose.connect(uri, options)
     console.log("Connecté à la base MongoDB assignments dans le cloud !");
     console.log("at URI = " + uri);
     console.log("vérifiez with http://localhost:8010/api/assignments que cela fonctionne")
-    },
+  },
     err => {
       console.log('Erreur de connexion: ', err);
     });
@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
 });
 
 // Pour les formulaires
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 let port = process.env.PORT || 8010;
@@ -51,14 +51,22 @@ app.route(prefix + '/assignments')
 app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
-  
+
 app.route(prefix + '/login')
   .post(login.postLogin);
 
 app.route(prefix + '/search/:s')
   .get(assignment.searchAssignments);
-  app.route(prefix + '/search/')
+app.route(prefix + '/search/')
   .get(assignment.getAssignments);
+
+app.route(prefix + '/assignmentsrendu')
+  .get(assignment.getAssignmentsRendu);
+
+app.route(prefix + '/assignmentsnonrendu')
+  .get(assignment.getAssignmentsNonRendu);
+
+
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");

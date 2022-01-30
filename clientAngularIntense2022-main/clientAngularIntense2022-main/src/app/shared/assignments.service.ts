@@ -25,12 +25,19 @@ export class AssignmentsService {
   }
 
   getAssignmentsPagine(page:number, limit:number, val:string):Observable<any> {
-    console.log(`${this.url}?page=${page}&limit=${limit}&val=${val}`);
     return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}&val=${val}`);
   }
 
   searchAssignments(page:number, limit:number, s:string){
     return this.http.get<any>(`http://localhost:8010/api/search/${s}?page=${page}&limit=${limit}`);
+  }
+
+  getRenduAssignmentsPagine(page:number, limit:number, val:string):Observable<any> {
+    return this.http.get<any>(`${this.url}rendu?page=${page}&limit=${limit}&val=${val}`);
+  }
+  
+  getNonRenduAssignmentsPagine(page:number, limit:number, val:string):Observable<any> {
+    return this.http.get<any>(`${this.url}nonrendu?page=${page}&limit=${limit}&val=${val}`);
   }
 
   getAssignment(id:number):Observable<Assignment|undefined> {

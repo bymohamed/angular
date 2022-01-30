@@ -5,7 +5,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
@@ -80,27 +79,75 @@ export class AssignmentsComponent implements OnInit {
 
   // pagination
   premierePage() {
-    this.page = 1;
-    this.getAssignments();
+    if(this.selectedValue=="tous" || this.selectedValue==undefined){
+      this.page = 1;
+      this.getAssignments();
+    }
+    else if (this.selectedValue=="rendu"){
+      this.page = 1;
+      this.getRenduAssignments();
+    }
+    else if (this.selectedValue=="nonrendu"){
+      this.page = 1;
+      this.getNonRenduAssignments();
+    }
   }
 
   dernierePage() {
-    this.page = this.totalPages;
-    this.getAssignments();
+    if(this.selectedValue=="tous" || this.selectedValue==undefined){
+      this.page = this.totalPages;
+      this.getAssignments();
+    }
+    else if (this.selectedValue=="rendu"){
+      this.page = this.totalPages;
+      this.getRenduAssignments();
+    }
+    else if (this.selectedValue=="nonrendu"){
+      this.page = this.totalPages;
+      this.getNonRenduAssignments();
+    }
   }
 
   pagePrecedente() {
+    if(this.selectedValue=="tous" || this.selectedValue==undefined){
       this.page = this.prevPage;
       this.getAssignments();
+    }
+    else if (this.selectedValue=="rendu"){
+      this.page = this.prevPage;
+      this.getRenduAssignments();
+    }
+    else if (this.selectedValue=="nonrendu"){
+      this.page = this.prevPage;
+      this.getNonRenduAssignments();
+    }
   }
 
   pageSuivante() {
+    if(this.selectedValue=="tous" || this.selectedValue==undefined){
       this.page = this.nextPage;
       this.getAssignments();
+    }
+    else if (this.selectedValue=="rendu"){
+      this.page = this.nextPage;
+      this.getRenduAssignments();
+    }
+    else if (this.selectedValue=="nonrendu"){
+      this.page = this.nextPage;
+      this.getNonRenduAssignments();
+    }
   }
 
   changeLimit() {
-    this.getAssignments();
+    if(this.selectedValue=="tous" || this.selectedValue==undefined){
+      this.getAssignments();
+    }
+    else if (this.selectedValue=="rendu"){
+      this.getRenduAssignments();
+    }
+    else if (this.selectedValue=="nonrendu"){
+      this.getNonRenduAssignments();
+    }
   }
 
   applyFilter(event: Event) {
@@ -115,4 +162,54 @@ export class AssignmentsComponent implements OnInit {
     console.log("connexion from login component")
     this.router.navigate(["/login"]);
   }
+
+  choices: any[] = [{name: "tous", value: "tous"},{name: "rendu", value: "rendu"},{name: "non rendu", value: "nonrendu"}]
+  selectedValue: string | undefined;
+
+  filter(){
+    console.log(this.selectedValue);
+    
+    if(this.selectedValue=="tous" || this.selectedValue==undefined){
+      this.getAssignments();
+    }
+    else if (this.selectedValue=="rendu"){
+      this.getRenduAssignments();
+    }
+    else if (this.selectedValue=="nonrendu"){
+      this.getNonRenduAssignments();
+    }
+  }
+
+  getRenduAssignments(){
+    this.assignmentService.getRenduAssignmentsPagine(this.page, this.limit, this.val).subscribe((data) => {
+      // le tableau des assignments est maintenant ici....
+      if (this.val == "") this.assignments = data.docs;
+      else this.assignments = this.dataSource.filteredData;
+      this.page = data.page;
+      this.limit = data.limit;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.hasPrevPage = data.hasPrevPage;
+      this.prevPage = data.prevPage;
+      this.hasNextPage = data.hasNextPage;
+      this.nextPage = data.nextPage;
+    });
+  }
+
+  getNonRenduAssignments(){
+    this.assignmentService.getNonRenduAssignmentsPagine(this.page, this.limit, this.val).subscribe((data) => {
+      // le tableau des assignments est maintenant ici....
+      if (this.val == "") this.assignments = data.docs;
+      else this.assignments = this.dataSource.filteredData;
+      this.page = data.page;
+      this.limit = data.limit;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.hasPrevPage = data.hasPrevPage;
+      this.prevPage = data.prevPage;
+      this.hasNextPage = data.hasNextPage;
+      this.nextPage = data.nextPage;
+    });
+  }
+
 }

@@ -19,6 +19,15 @@
     </button>
   </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Filter</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="choice" (selectionChange)="filter()">
+      <mat-option *ngFor="let choice of choices" [value]="choice.value">
+        {{choice.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <h2>Liste des assignments :</h2>
   Nb assignments par page :
   <input type=range min=2 max=100 value=10 [(ngModel)]="limit" (change)="getAssignments()"> {{limit}}

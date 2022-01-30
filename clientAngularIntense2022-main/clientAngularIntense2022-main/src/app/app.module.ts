@@ -24,7 +24,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
-
+import { MatSelectModule } from '@angular/material/select';
 var JWT="";
 
 const routes:Routes = [
@@ -75,7 +75,7 @@ const routes:Routes = [
     MatButtonModule, MatIconModule, MatDividerModule,
     FormsModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatListModule, MatCardModule,
-    MatCheckboxModule, MatSlideToggleModule, HttpClientModule,
+    MatCheckboxModule, MatSlideToggleModule, HttpClientModule,MatSelectModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
