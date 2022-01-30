@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
+import {MatTableDataSource} from '@angular/material/table';
+
 
 @Component({
   selector: 'app-assignments',
@@ -10,7 +12,6 @@ import { Assignment } from './assignment.model';
 export class AssignmentsComponent implements OnInit {
   ajoutActive = false;
   assignments: Assignment[] = [];
-  // pour la pagination
   page: number = 1;
   limit: number = 10;
   totalDocs: number = 0;
@@ -19,17 +20,28 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
+  dataSource = new MatTableDataSource(this.assignments);
+  val : string = "";
+  
 
   constructor(private assignmentService: AssignmentsService) {}
 
   ngOnInit(): void {
+    this.getAllAssignments();
     this.getAssignments();
   }
 
+  getAllAssignments(){
+    this.assignmentService.getAssignmentsPagine(1, 1000, this.val).subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data.docs);
+    });
+  }
+
   getAssignments() {
-    this.assignmentService.getAssignmentsPagine(this.page, this.limit).subscribe((data) => {
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.val).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
-      this.assignments = data.docs;
+      if (this.val == "") this.assignments = data.docs;
+      else this.assignments = this.dataSource.filteredData;
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -83,6 +95,13 @@ export class AssignmentsComponent implements OnInit {
   }
 
   changeLimit() {
+    this.getAssignments();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.val = this.dataSource.filter;
     this.getAssignments();
   }
 }

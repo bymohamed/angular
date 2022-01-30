@@ -14,14 +14,24 @@ function getAssignments(req, res){
 */
 // Récupérer tous les assignments (GET)
 function getAssignments(req, res) {
+
+    var assignmentNom = "";
+    assignmentNom = req.query.val;
+    //var searchQuery = Assignment.find({nom: "/.*" + assignmentNom + ".*/"});
+
     var aggregateQuery = Assignment.aggregate();
-    Assignment.aggregatePaginate(aggregateQuery,
+
+    
+
+    Assignment.aggregatePaginate(aggregateQuery,  
       {
         page: parseInt(req.query.page) || 1,
         limit: parseInt(req.query.limit) || 10,
-      },
+      },  
+      
       (err, assignments) => {
         if (err) {
+            console.log("err : " + err)
           res.send(err);
         }
         res.send(assignments);
