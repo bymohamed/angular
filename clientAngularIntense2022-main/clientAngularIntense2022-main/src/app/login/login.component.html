@@ -1,18 +1,25 @@
+
 <form action="" method="post">
-       
+  
         <mat-form-field class="example-full-width">
           <input matInput [(ngModel)]="ngUsername" type="text" placeholder="Login" name="uname" required>
         </mat-form-field>
         &nbsp;
-
+        &nbsp;
+        &nbsp;
+        &nbsp;
         <mat-form-field class="example-full-width">
             <input matInput [(ngModel)]="ngPassword" type="password" placeholder="Mot de passe" name="psw" required>
           </mat-form-field>
           &nbsp;
-        <label>
+          &nbsp;
+          &nbsp;  
+        <label class="remember">
             <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
         </label>
    
+    &nbsp;
+    &nbsp;
     &nbsp;
 
     <button mat-raised-button
@@ -21,8 +28,10 @@
     Se connecter
     </button>
     &nbsp;
-
-    <div class="container" style="background-color:#f1f1f1">
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <div class="forgot" style="background-color:#f1f1f1">
         <span class="psw"> Vous avez oublié votre <a href="#">mot de passe ?</a></span>
     </div>
 

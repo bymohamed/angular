@@ -1,22 +1,40 @@
 <main class="container">
-  <div class="ajouterBtn">
-    <a routerLink="/add">
-      <button mat-flat-button color="accent">
-        Ajouter +
-      </button>
-    </a>
-  </div>
-  <h2>Liste des assignments :</h2>
+
+  <button mat-flat-button color="warn" class="logout" (click)="logout()">
+    Se déconnecter
+  </button>
+
+  <h2>Liste des assignments</h2>
 
   <div class="slider">
     Nombre assignments par page :
       <input type=range min=2 max=100 value=10 [(ngModel)]="limit" (change)="getAssignments()">  {{limit}}
     </div>
+    &nbsp;
+    <div class="ajouterBtn">
+      <a routerLink="/add">
+        <button mat-flat-button color="accent">
+          Ajouter +
+        </button>
+      </a>
+    </div>
  
-<mat-form-field class="recherche" appearance="standard">
-  <mat-label>Recherche</mat-label>
-  <input matInput (keyup)="search($event)" placeholder="Trouver un assignment" #input>
-</mat-form-field>
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Recherche</mat-label>
+      <input matInput type="text" [(ngModel)]="s" (keypress)="search($event)" placeholder="Trouver un assignment">
+      <button *ngIf="s" matSuffix mat-icon-button aria-label="Clear" (click)="s=''; search($event)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Filtre</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="choice" (selectionChange)="filter()">
+        <mat-option *ngFor="let choice of choices" [value]="choice.value">
+          {{choice.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
   <table mat-table class="mat-elevation-z8">   
       <tr mat-header-row >

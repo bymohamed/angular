@@ -2,14 +2,19 @@
     display:block;
     
 }
-input{
-    margin:10px;
-    width: 275px;
+
+.remember, .forgot {
     margin-right: auto;
+    margin-left: auto;
 }
 
 form {
-    margin-left: 30%;
-    
- }
+    display: flex;
+    flex-direction: column;  
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+ 
+
 
