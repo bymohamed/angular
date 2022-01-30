@@ -57,6 +57,8 @@ app.route(prefix + '/login')
 
 app.route(prefix + '/search/:s')
   .get(assignment.searchAssignments);
+  app.route(prefix + '/search/')
+  .get(assignment.getAssignments);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");

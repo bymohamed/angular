@@ -55,7 +55,11 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+  s = '';
   search(event: any){
+    if(event.target.value == undefined){
+      event.target.value=""
+    }
     this.assignmentService.searchAssignments(this.page, this.limit, event.target.value).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
       this.assignments = data.docs;

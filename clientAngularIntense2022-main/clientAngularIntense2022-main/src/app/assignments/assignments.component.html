@@ -11,7 +11,13 @@
     logout
   </button>
 
-  <input type="text" (keypress)="search($event)" placeholder="search"/>
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Search here</mat-label>
+    <input matInput type="text" [(ngModel)]="s" (keypress)="search($event)" placeholder="search">
+    <button *ngIf="s" matSuffix mat-icon-button aria-label="Clear" (click)="s=''; search($event)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
 
   <h2>Liste des assignments :</h2>
   Nb assignments par page :

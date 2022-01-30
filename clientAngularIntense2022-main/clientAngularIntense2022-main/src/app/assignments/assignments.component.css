@@ -42,3 +42,7 @@ th.mat-sort-header-sorted {
   top: 5px;
   right: 5px;
 }
+
+.example-form-field {
+  width: 500px;
+}
