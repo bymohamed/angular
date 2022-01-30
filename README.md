@@ -1,7 +1,7 @@
 # angular
 
-##username : test  
-##password : test
+## username : test  
+## password : test
 #(il faut appuyer deux fois sur login , des fois)  
 Le login marche avec l'api  
 Angular envoie les données à nodejs  
