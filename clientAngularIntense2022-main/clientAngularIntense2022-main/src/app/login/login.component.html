@@ -1,23 +1,29 @@
-<p>please login to access website</p>
-
 <form action="" method="post">
+       
+        <mat-form-field class="example-full-width">
+          <input matInput [(ngModel)]="ngUsername" type="text" placeholder="Login" name="uname" required>
+        </mat-form-field>
+        &nbsp;
 
-    <div class="container">
-        <div class="form-input">
-        <label for="uname"><b>Username</b></label>
-        <input [(ngModel)]="ngUsername" type="text" placeholder="Enter Username" name="uname" required>
-    </div>
-    <div class="form-input">
-        <label for="psw"><b>Password</b></label>
-        <input [(ngModel)]="ngPassword" type="password" placeholder="Enter Password" name="psw" required>
-    </div>
-        <button type="submit" (click)="Login()">Login</button>
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="ngPassword" type="password" placeholder="Mot de passe" name="psw" required>
+          </mat-form-field>
+          &nbsp;
         <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
+            <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
         </label>
-    </div>
+   
+    &nbsp;
+
+    <button mat-raised-button
+    color="primary"
+    (click)="Login()">
+    Se connecter
+    </button>
+    &nbsp;
 
     <div class="container" style="background-color:#f1f1f1">
-        <span class="psw">Forgot <a href="#">password?</a></span>
+        <span class="psw"> Vous avez oublié votre <a href="#">mot de passe ?</a></span>
     </div>
+
 </form>

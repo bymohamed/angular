@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
-import {MatTableDataSource} from '@angular/material/table';
 
 
 @Component({
@@ -20,28 +19,26 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
-  dataSource = new MatTableDataSource(this.assignments);
-  val : string = "";
   
 
   constructor(private assignmentService: AssignmentsService) {}
 
   ngOnInit(): void {
-    this.getAllAssignments();
     this.getAssignments();
   }
 
+  /*
   getAllAssignments(){
-    this.assignmentService.getAssignmentsPagine(1, 1000, this.val).subscribe((data) => {
+    this.assignmentService.getAssignmentsPagine(1, 1000).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data.docs);
     });
   }
+  */
 
   getAssignments() {
-    this.assignmentService.getAssignmentsPagine(this.page, this.limit, this.val).subscribe((data) => {
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
-      if (this.val == "") this.assignments = data.docs;
-      else this.assignments = this.dataSource.filteredData;
+      this.assignments = data.docs;
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -54,7 +51,6 @@ export class AssignmentsComponent implements OnInit {
   }
 
   search(event: any){
-    console.log("zebii");
     this.assignmentService.searchAssignments(this.page, this.limit, event.target.value).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
       this.assignments = data.docs;
@@ -98,10 +94,10 @@ export class AssignmentsComponent implements OnInit {
     this.getAssignments();
   }
 
-  applyFilter(event: Event) {
+  /*applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.val = this.dataSource.filter;
     this.getAssignments();
-  }
+  }*/
 }

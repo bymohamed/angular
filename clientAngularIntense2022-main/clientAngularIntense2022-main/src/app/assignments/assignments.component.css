@@ -15,10 +15,16 @@
  .container {
    display:flex;
    flex-direction: column;
+ 
  }
 
  .ajouterBtn {
-   align-self: flex-end;
+   margin-left: 90%;
+ }
+
+ .slider {
+   width: 35%;
+   margin-left: 70%;
  }
 
  .pagination {
@@ -26,6 +32,8 @@
   display:flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 th.mat-sort-header-sorted {
@@ -35,4 +43,10 @@ th.mat-sort-header-sorted {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+}
+
+table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }

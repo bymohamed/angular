@@ -24,9 +24,9 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.url);
   }
 
-  getAssignmentsPagine(page:number, limit:number, val:string):Observable<any> {
-    console.log(`${this.url}?page=${page}&limit=${limit}&val=${val}`);
-    return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}&val=${val}`);
+  getAssignmentsPagine(page:number, limit:number):Observable<any> {
+    console.log(`${this.url}?page=${page}&limit=${limit}`);
+    return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}`);
   }
 
   searchAssignments(page:number, limit:number, s:string){

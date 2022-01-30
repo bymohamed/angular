@@ -14,15 +14,7 @@ function getAssignments(req, res){
 */
 // Récupérer tous les assignments (GET)
 function getAssignments(req, res) {
-
-    var assignmentNom = "";
-    assignmentNom = req.query.val;
-    //var searchQuery = Assignment.find({nom: "/.*" + assignmentNom + ".*/"});
-
     var aggregateQuery = Assignment.aggregate();
-
-    
-
     Assignment.aggregatePaginate(aggregateQuery,  
       {
         page: parseInt(req.query.page) || 1,

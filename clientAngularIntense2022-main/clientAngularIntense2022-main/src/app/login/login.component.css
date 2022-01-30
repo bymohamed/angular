@@ -4,4 +4,12 @@
 }
 input{
     margin:10px;
+    width: 275px;
+    margin-right: auto;
 }
+
+form {
+    margin-left: 30%;
+    
+ }
+
