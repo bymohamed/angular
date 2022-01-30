@@ -39,4 +39,8 @@ export class AppComponent {
       this.router.navigate(['/home'], { replaceUrl: true });
     });
   }
+
+  public loggedIn(){
+    return this.authService.loggedIn;
+  }
 }

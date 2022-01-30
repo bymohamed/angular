@@ -5,6 +5,7 @@ Angular envoie les données à nodejs
 nodejs encrypte les données et les verifie sur la base  
 si tout est ok loggedin=true sinon loggedin=false  
 
+Le front a été changé après l'enregistrement de la video
 https://www.youtube.com/watch?v=UN0ROenVMDc
 
 ```
