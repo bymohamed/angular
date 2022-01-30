@@ -12,12 +12,15 @@ export class LoginComponent implements OnInit {
   ngUsername = "";
   ngPassword = "";
 
-  constructor(private _authServe: AuthService, private router:Router) { }
+  constructor(private _authServe: AuthService, private router: Router) { }
 
-  Login(){
-    this._authServe.logIn(this.ngUsername , this.ngPassword)
+  Login() {
+    this._authServe.logIn(this.ngUsername, this.ngPassword)
     console.log("connexion from login component")
-    this.router.navigate(["/home"]);
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    },
+      1000);
   }
 
   ngOnInit(): void {
