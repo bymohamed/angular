@@ -28,6 +28,10 @@ export class AssignmentsService {
     return this.http.get<any>(`${this.url}?page=${page}&limit=${limit}`);
   }
 
+  searchAssignments(page:number, limit:number, s:string){
+    return this.http.get<any>(`http://localhost:8010/api/search/${s}?page=${page}&limit=${limit}`);
+  }
+
   getAssignment(id:number):Observable<Assignment|undefined> {
     //let assignment = this.assignments.find(elem => elem.id === id);
 

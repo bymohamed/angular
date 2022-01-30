@@ -41,6 +41,22 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+  search(event: any){
+    console.log("zebii");
+    this.assignmentService.searchAssignments(this.page, this.limit, event.target.value).subscribe((data) => {
+      // le tableau des assignments est maintenant ici....
+      this.assignments = data.docs;
+      this.page = data.page;
+      this.limit = data.limit;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.hasPrevPage = data.hasPrevPage;
+      this.prevPage = data.prevPage;
+      this.hasNextPage = data.hasNextPage;
+      this.nextPage = data.nextPage;
+    });
+  }
+
   getColor(a: any) {
     return a.rendu ? 'green' : 'red';
   }

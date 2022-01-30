@@ -90,6 +90,22 @@ function deleteAssignment(req, res) {
     })
 }
 
+function searchAssignments(req, res) {
+    var aggregateQuery = Assignment.aggregate([ { $match : { nom :{'$regex' : req.params.s, '$options' : 'i'} } } ]);
+    Assignment.aggregatePaginate(aggregateQuery,
+      {
+        page: parseInt(req.query.page) || 1,
+        limit: parseInt(req.query.limit) || 10,
+        
+      },
+      (err, assignments) => {
+        if (err) {
+          res.send(err);
+        }
+        res.send(assignments);
+      }
+    );
+   }
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment, searchAssignments };

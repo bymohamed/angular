@@ -55,6 +55,9 @@ app.route(prefix + '/assignments/:id')
 app.route(prefix + '/login')
   .post(login.postLogin);
 
+app.route(prefix + '/search/:s')
+  .get(assignment.searchAssignments);
+
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
